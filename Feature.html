@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pulse</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- Google Fonts Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="indexPulse.css" />
+    <link rel="stylesheet" href="Feature.css" />
+
+</head>
+
+
+<!-- header  -->
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <!-- Logo on the right side -->
+            <a class="navbar-brand" href="IndexPulse.html">
+                <img class="img-fluid" src="https://pulseapp.com/img/pulse-logo.svg" alt="Logo" height="40">
+            </a>
+
+            <!-- Navbar toggler for small screens -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation items on the left side -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link  font-weight-bold" href="Feature.html">Feature <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="CS.html">Customer Stories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="Pricing.html">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link font-weight-bold" href="Blog.html">Blog</a>
+                    </li>
+
+                    <!--  button with hover effect -->
+                    <form class="form-inline my-2 my-lg-0">
+
+                        <a class=" navbarbtn btn btn-outline-success my-2 my-sm-0" href="SignUp.html" type="submit">Sign Up</a>
+                    </form>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<!------End Header-->
+<!----  start 1st Section Feature----->
+<section class="main-section-Feature ">
+    <div class=" container   ">
+        <div class="row ">
+            <div class="justify-content-center  mx-auto py-4 mt-5 p-4">
+                <h4 class="font-weight-bold mt-5 text-center display-4 ">Need an accurate financial forecast? </h4>
+                <h4 class="text-center font-weight-bold  mt-2">Use Pulse to project your cash flow with confidence.</h4>
+                <div class="text-center mt-4">
+                    <a type="button" class="btn btn-primary btn-lg" href="SignUp.html">Try 30 Days Free</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</section>
+<!----end 1st Section Feature----->
+
+<!----  start 2nd Section Feature----->
+
+
+<section class="main-section-Feature-2">
+    <div class="container mt-4 py-4 p-4">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-6 mt-5 py-4">
+                <h1 class="mt-5 display-4 font-weight-bold">
+                    Manage your cash flow.
+                </h1>
+            </div>
+            <div class="col-lg-2 col-md-3"></div>
+            <div class="col-lg-7 col-md-3 p-4 mt-5 py-4">
+                <div class="card p-4 justify-content-end" style="border-radius: 5%; background-color: whitesmoke;">
+                    <div class="pie-chart-container">
+                        <img src="Piechart.png" alt="Pie Chart" class="img-fluid" width="100%" height="200px">
+                        <div class="pie-chart-line" id="dynamicLine"></div>
+                        <div class="income-marker-line" id="incomeMarker"></div>
+                    </div>
+                    <h6>Add Income</h6>
+                    <form id="incomeForm" class="row">
+                        <div class="form-group col-md-3">
+                            <label for="incomeDate">Date</label>
+                            <input type="date" class="form-control" id="incomeDate" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="incomeAmount">Amount</label>
+                            <input type="number" class="form-control" id="incomeAmount" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="incomeRepeat">Repeat</label>
+                            <select class="form-control" id="incomeRepeat" required>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3 mt-4 p-1">
+                            <button type="submit" value="submit" class="btn btn-primary">+ Add Income</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    const dynamicLine = document.getElementById('dynamicLine');
+    const incomeMarkerLine = document.getElementById('incomeMarker');
+
+    setInterval(() => {
+
+        const randomDate = new Date(+(new Date()) - Math.floor(Math.random() * 10000000000));
+        const randomAmount = Math.floor(Math.random() * 1000);
+        const randomRepeat = ['daily', 'weekly', 'monthly'][Math.floor(Math.random() * 3)];
+
+        document.getElementById('incomeDate').value = randomDate.toISOString().split('T')[0];
+        document.getElementById('incomeAmount').value = randomAmount;
+        document.getElementById('incomeRepeat').value = randomRepeat;
+
+
+
+
+        const markerPosition = randomAmount / 1000 * 100;
+        incomeMarkerLine.style.left = `calc(50% + ${markerPosition}px)`;
+
+
+        const randomChange = Math.random() > 0.5 ? 1 : -1;
+        let linePosition = 50 + randomChange * Math.floor(Math.random() * 21);
+        linePosition = Math.max(0, Math.min(100, linePosition));
+        dynamicLine.style.top = linePosition + '%';
+    }, 5000);
+</script>
+<!----end 2nd Section Feature----->
+
+<!----  start 3rd Section Feature----->
+<section>
+    <div class="container mt-5 py-4">
+        <div class="row mt-5 p-4">
+
+            <div class=" col-md-4 justify-content-center  mx-auto  ">
+                <div class="  ">
+                    <h6 class="font-weight-bold mt-4 text-left">Enter your cash flow projections
+                    </h6>
+                    <p class="">“Add single income or expenses to your cash flow for complete control.”</p>
+
+                </div>
+
+            </div>
+
+            <div class=" col-md-4 justify-content-center  mx-auto ">
+                <div class=" ">
+                    <h6 class="font-weight-bold mt-4 text-left">Automate recurring entries
+                    </h6>
+                    <p class="">Reduce manual entry with powerful recurring income and expense logic.</p>
+
+
+                </div>
+            </div>
+            <div class=" col-md-4 justify-content-center  mx-auto  ">
+                <div class="  ">
+                    <h6 class="font-weight-bold mt-4 text-left">View Detailed Transactions
+                    </h6>
+                    <p class="">Add multiple lines to a single item to make your cash flow easy to understand.</p>
+
+
+                </div>
+            </div>
+            <div class="row p-4">
+
+                <div class=" col-md-4 justify-content-center  mx-auto  ">
+                    <div class="  ">
+                        <h6 class="font-weight-bold mt-2 text-left">Adjust past transactions
+                        </h6>
+                        <p class="">If something needs to be edited, you can do that to any entry, at any time.</p>
+
+                    </div>
+
+                </div>
+
+                <div class=" col-md-4 justify-content-center  mx-auto ">
+                    <div class=" ">
+                        <h6 class="font-weight-bold mt-2 text-left">Dial in growth and expense curves
+                        </h6>
+                        <p class="">Anticipating some growth? Pulse can automate that, too.</p>
+
+
+                    </div>
+                </div>
+                <div class=" col-md-4 justify-content-center  mx-auto  ">
+                    <div class="  ">
+                        <h6 class="font-weight-bold mt-2 text-left">Play with scenarios
+                        </h6>
+                        <p class="">Quickly see what would happen to your bottom line by toggling income and expenses on
+                            and
+                            off..</p>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+</section>
+
+<!----  end 3rd Section Feature----->
+
+
+<!----  start 4th Section Feature----->
+<section class="main-section-Feature-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-4 mt-5 py-4">
+                <h1 class="mt-5 font-weight-bold">
+                    Visualize your income and expenses.
+                </h1>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-6 p-4 mt-5 py-4">
+                <div class="card p-4 justify-content-end" style="border-radius: 5%; background-color: whitesmoke;">
+                    <div class="container">
+                        <div class="zoomed-image-container">
+                            <img src="Piechart.png" alt="Pie Chart" class="img-fluid zoomed-image" id="chartImage">
+                            <div class="horizontal-line" id="horizontalLine"></div>
+                        </div>
+                        <div class="form row p-4">
+                            <div class="form-check col-md-3">
+                                <input class="form-check-input" type="checkbox" value="" id="check4mos">
+                                <label class="form-check-label" for="check4mos">4 mos</label>
+                            </div>
+                            <div class="form-check col-md-3">
+                                <input class="form-check-input" type="checkbox" value="" id="check6mos">
+                                <label class="form-check-label" for="check6mos">6 mos</label>
+                            </div>
+                            <div class="form-check col-md-3">
+                                <input class="form-check-input" type="checkbox" value="" id="check8mos">
+                                <label class="form-check-label" for="check8mos">8 mos</label>
+                            </div>
+                            <div class="form-check col-md-3">
+                                <input class="form-check-input" type="checkbox" value="" id="check12mos">
+                                <label class="form-check-label" for="check12mos">12 mos</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="container mt-5 py-4">
+        <div class="row mt-5 p-4">
+             <div class=" col-md-4 justify-content-center  mx-auto  ">
+                <div class="  ">
+                    <h6 class="font-weight-bold mt-4 text-left">Enter your cash flow projections
+                    </h6>
+                    <p class="">“Add single income or expenses to your cash flow for complete control.”</p>
+                </div>
+            </div>
+            <div class=" col-md-4 justify-content-center  mx-auto ">
+                <div class=" ">
+                    <h6 class="font-weight-bold mt-4 text-left">Automate recurring entries
+                    </h6>
+                    <p class="">Reduce manual entry with powerful recurring income and expense logic.</p>
+                </div>
+            </div>
+            <div class=" col-md-4 justify-content-center  mx-auto  ">
+                <div class="  ">
+                    <h6 class="font-weight-bold mt-4 text-left">View Detailed Transactions
+                    </h6>
+                    <p class="">Add multiple lines to a single item to make your cash flow easy to understand.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</section>
+<script>
+    const chartImage = document.getElementById('chartImage');
+    const horizontalLine = document.getElementById('horizontalLine');
+    const checkboxes = document.querySelectorAll('.form-check-input');
+
+    function toggleImageZoom() {
+        if (chartImage.classList.contains('zoomed')) {
+            chartImage.classList.remove('zoomed');
+            horizontalLine.classList.remove('show-line');
+        } else {
+            chartImage.classList.add('zoomed');
+            horizontalLine.classList.add('show-line');
+        }
+    }
+
+    function autoCheck() {
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = !checkbox.checked;
+        });
+        toggleImageZoom();
+    }
+
+    setInterval(autoCheck, 2000);
+</script>
+<!----  end 4th Section Feature----->
+
+
+
+
+
+<!----  start 6th Section Feature----->
+<section class="main-section-Feature-5">
+    <div class="container mt-4 py-4 p-4">
+        <div class="row align-items-center">
+            <div class="col-lg-4 col-md-6 mt-5 py-4">
+                <h1 class="mt-5 font-weight-bold">
+                    Connect your accounting software
+                </h1>
+            </div>
+            <div class="col-lg-2 col-md-0"></div>
+            <div class="col-lg-6 col-md-6 p-3 mt-5 py-4">
+                <div class="card p-4 justify-content-end"
+                    style="border-radius: 5%; background-color: whitesmoke; position: relative;">
+                    <div class="container text-container">
+                        <div class="position-relative">
+                            <img src="Piechart.png" alt="Pie Chart" class="img-fluid">
+                            <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                                class="graph-line">
+                                <line id="line1" x1="0" y1="50" x2="150" y2="50"
+                                    style="stroke: red; stroke-width: 2px;" />
+                                <line id="line2" x1="0" y1="60" x2="84" y2="60"
+                                    style="stroke: red; stroke-width: 2px;" />
+                            </svg>
+                               </div>
+                            <div class="row align-items-center mt-3">
+                                <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
+                                    <h6 id="projections" class="text-center projections">Projections</h6>
+                                </div>
+                                <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
+                                    <h6 id="quickbook" class="text-center quickbook">Quickbook Actual</h6>
+                                </div>
+                                <div class="col-12 col-md-4 text-center">
+                                    <button type="button" class="btn btn-success">Sync QuickBook</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container mt-5 py-4">
+        <div class="row mt-5 p-4">
+             <div class=" col-md-4 justify-content-center  mx-auto  ">
+                <div class="  ">
+                    <h6 class="font-weight-bold mt-4 text-left">Quickbooks Online Integration
+                    </h6>
+                    <p class="">Sync at any time to get the latest transactions from QuickBooks Online.</p>
+                </div>
+            </div>
+            <div class=" col-md-4 justify-content-center  mx-auto ">
+                <div class=" ">
+                    <h6 class="font-weight-bold mt-4 text-left">Compare actuals and projections
+                    </h6>
+                    <p class="">By putting your accounting data right alongside your cash flow projections, you can compare your projections with your actual cash flow.</p>
+                </div>
+            </div>
+            <div class=" col-md-4 justify-content-center  mx-auto  ">
+                <div class="  ">
+                    <h6 class="font-weight-bold mt-4 text-left">Less manual entry and errors
+                    </h6>
+                    <p class="">With a direction connection, you don’t have to worry about messing anything up.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+
+<style>
+    .graph-line {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .text-container {
+        position: relative;
+    }
+
+   
+    .quickbook {
+        opacity: 0;
+        transition: opacity 10s ease-in-out;
+    }
+
+    .projections.show,
+    .quickbook.show {
+        opacity: 1;
+    }
+    .projections{
+        transition: opacity 0.5s ease-in-out;
+        opacity: 0;
+    }
+
+</style>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        animateLines();
+    });
+
+    function animateLines() {
+        const line1 = document.getElementById("line1");
+        const line2 = document.getElementById("line2");
+        const lineLength = line1.getTotalLength();
+
+        line1.style.strokeDasharray = line2.style.strokeDasharray = lineLength;
+        line1.style.strokeDashoffset = line2.style.strokeDashoffset = lineLength;
+
+        setTimeout(function () {
+            line1.style.transition = 'stroke-dashoffset 2s ease-in-out';
+            line1.style.strokeDashoffset = '0';
+
+            setTimeout(function () {
+                line2.style.transition = 'stroke-dashoffset 2s ease-in-out';
+                line2.style.strokeDashoffset = '0';
+            }, 1000);
+        }, 1000);
+
+        setTimeout(function () {
+            animateLines(); // Repeat the animation
+        }, 4000); // Repeat every 4 seconds
+
+        // Show projections and quickbook with transition
+        setTimeout(function () {
+            document.getElementById("projections").classList.add("show");
+            document.getElementById("quickbook").classList.add("show");
+        }, 1000);
+    }
+
+    // Align text with lines
+    function alignTextWithLine() {
+        const projections = document.getElementById("projections");
+        const quickbook = document.getElementById("quickbook");
+        const line1 = document.getElementById("line1");
+        const line2 = document.getElementById("line2");
+
+        const line1Rect = line1.getBoundingClientRect();
+        const line2Rect = line2.getBoundingClientRect();
+
+        projections.style.top = line1Rect.top + line1Rect.height / 2 - projections.offsetHeight / 2 + "px";
+        quickbook.style.top = line2Rect.top + line2Rect.height / 2 - quickbook.offsetHeight / 2 + "px";
+    }
+
+    window.addEventListener("resize", alignTextWithLine);
+    window.addEventListener("load", alignTextWithLine);
+</script>
+<!----  end 5th Section Feature----->
+<!----  start 6th Section Feature----->
+<section class="main-section-Feature-6 py-4">
+    <div class="container ">
+        <div class="row align-items-center">
+            <div class="col-lg-4 col-md-5 mt-5 py-4">
+                <h1 class="mt-5 font-weight-bold">
+                    Share your projections
+                </h1>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-lg-6 col-md-5 p-3 mt-5 py-4">
+                <div class="circle-container">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM7flOCgfTJNqUG5dRezhVvdf9oxG-rVHdJQ&s" alt="Icon 1" class="circle-image">
+                    <img src="data:image/jpeg;base64,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" alt="Icon 2" class="circle-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW_b8RHvF2tGS89spiNAqwjVlawqiyub2ojg&s" alt="Icon 3" class="circle-image">
+                    <img src="data:image/png;base64,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" alt="Icon 4" class="circle-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMl4VAyMjyX9Ss5vOWLhE3YAxfvXqaqeCtEw&s" alt="Icon 5" class="circle-image">
+                    <img src="data:image/jpeg;base64,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"  class="circle-image">
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 py-4">
+        <div class="row mt-5 p-4">
+             <div class=" col-md-4 justify-content-center  mx-auto  ">
+                <div class="  ">
+                    <h6 class="font-weight-bold mt-4 text-left">Enter your cash flow projections
+                    </h6>
+                    <p class="">“Add single income or expenses to your cash flow for complete control.”</p>
+                </div>
+            </div>
+            <div class=" col-md-4 justify-content-center  mx-auto ">
+                <div class=" ">
+                    <h6 class="font-weight-bold mt-4 text-left">Automate recurring entries
+                    </h6>
+                    <p class="">Reduce manual entry with powerful recurring income and expense logic.</p>
+                </div>
+            </div>
+            <div class=" col-md-4 justify-content-center  mx-auto  ">
+                <div class="  ">
+                    <h6 class="font-weight-bold mt-4 text-left">View Detailed Transactions
+                    </h6>
+                    <p class="">Add multiple lines to a single item to make your cash flow easy to understand.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</section>
+
+<!----  end 6th Section Feature----->
+
+<!---Footer-->
+<section class="ftco-section bg-success py-3 p-4">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center ">
+                <h2 class="font-weight-bold text-light footer-heading-a-btn "><a href="SignUp.html"
+                        class="font-weight-bold text-light footer-heading-a-btn ">Sign up For Free 30 days</a><i
+                        class="bi bi-arrow-right" class="font-weight-bold text-light "></i></h2>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer-02 mb-0 py-4">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-4 col-lg-5">
+                <div class="row mt-5 py-4 ">
+                    <div class="col-md-12 col-lg-8 mb-md-0 mb-4">
+                        <h2 class="footer-heading"><a href="IndexPulse.html" class="logo"><img
+                                    src="https://pulseapp.com/img/pulse-logo.svg"></a></h2>
+                        <div class="mt-5">
+                            <a type="button" class=" section-content-3btn-footer btn btn-success btn-lg"
+                                href="SignUp.html"> Sign up for a 30 Days
+                                Trial</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-7">
+                <div class="row mt-5  p-4">
+                    <div class="col-md-3 mb-md-0 mb-4 ">
+                        <h4 class="footer-heading text-light">Product</h4>
+                        <ul class="list-unstyled">
+                            <li>
+                                <h6 clas="mt-3"><a href="Feature.html"
+                                        class="py-1 d-block text-success mt-3 footer-heading-a"> Feature</a></h6>
+                            </li>
+                            <li>
+                                <h6 clas="mt-3"><a href="Pricing.html"
+                                        class="py-1 d-block text-success mt-3 footer-heading-a"> Pricing</a></h6>
+                            </li>
+                            <li>
+                                <h6 clas="mt-3"><a href="SignUp.html"
+                                        class="py-1 d-block text-success mt-3 footer-heading-a"> Sign Up</a></h6>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="col-md-3 mb-md-0 mb-4 ">
+                        <h4 class="footer-heading text-light">Company</h4>
+                        <ul class="list-unstyled">
+                            <li>
+                                <h6 clas="mt-3"><a href="#"
+                                        class="py-1 d-block text-success mt-3 footer-heading-a">Customer Stories</a>
+                                </h6>
+                            </li>
+                            <li>
+                                <h6 clas="mt-3"><a href="About.html"
+                                        class="py-1 d-block text-success mt-3 footer-heading-a"> About</a></h6>
+                            </li>
+                            <li>
+                                <h6 clas="mt-3"><a href="SignUp.html"
+                                        class="py-1 d-block text-success mt-3 footer-heading-a"> Contact</a></h6>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-3 mb-md-0 mb-4 ">
+                        <h4 class="footer-heading text-light">Resources</h4>
+                        <ul class="list-unstyled">
+                            <li>
+                                <h6 clas="mt-3"><a href="SignUp.html"
+                                        class="py-1 d-block text-success mt-3 footer-heading-a">Support</a></h6>
+                            </li>
+                            <li>
+                                <h6 clas="mt-3"><a href="Blog.html"
+                                        class="py-1 d-block text-success mt-3 footer-heading-a"> Blog</a></h6>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row partner-wrap mt-4 py-4 mb-0">
+            <div class="col-md-12">
+                <div class="row align-items-center">
+                    <div class="col-md-7">
+                        <p class="partner-name mb-0">
+                            <small href="#" class="text-light footer-heading-a">
+                                <span class="ion-logo-ionic mr-2 text-light">©2019 Pulseapp.com, Inc. All Rights
+                                    Reserved |</span> <a href="TermPulse.html"
+                                    class="text-success footer-heading-a ">Terms of Use</a> | <a href="Privacy.html"
+                                    class="text-success footer-heading-a">Privacy Policy</a> | EU Privacy
+                                Pulse is made by Simple Focus. We also make Ballpark, Sifter, and Curated.
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
