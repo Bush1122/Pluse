@@ -1,0 +1,1 @@
+Pulse is a financial management app designed to help users track their spending, manage budgets, and gain insights into their financial health. It offers features like expense categorization, financial goal setting, and real-time spending alerts.
